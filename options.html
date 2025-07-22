@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>FocusGuard Settings</title>
+  <style>
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      background: #f8f9fa;
+      margin: 0;
+      padding: 40px;
+      color: #2c3e50;
+    }
+    
+    .container {
+      max-width: 600px;
+      margin: 0 auto;
+      background: white;
+      border-radius: 12px;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+      overflow: hidden;
+    }
+    
+    .header {
+      background: #3498db;
+      color: white;
+      padding: 30px;
+      text-align: center;
+    }
+    
+    .header h1 {
+      margin: 0;
+      font-size: 28px;
+    }
+    
+    .header p {
+      margin: 10px 0 0 0;
+      opacity: 0.9;
+    }
+    
+    .content {
+      padding: 30px;
+    }
+    
+    .section {
+      margin-bottom: 30px;
+    }
+    
+    .section h2 {
+      color: #2c3e50;
+      font-size: 20px;
+      margin-bottom: 15px;
+      padding-bottom: 10px;
+      border-bottom: 2px solid #ecf0f1;
+    }
+    
+    .input-group {
+      margin-bottom: 15px;
+    }
+    
+    label {
+      display: block;
+      margin-bottom: 5px;
+      font-weight: 600;
+      color: #34495e;
+    }
+    
+    input[type="url"], textarea {
+      width: 100%;
+      padding: 12px;
+      border: 2px solid #ecf0f1;
+      border-radius: 6px;
+      font-size: 14px;
+      box-sizing: border-box;
+      transition: border-color 0.3s;
+    }
+    
+    input[type="url"]:focus, textarea:focus {
+      outline: none;
+      border-color: #3498db;
+    }
+    
+    textarea {
+      height: 120px;
+      resize: vertical;
+      font-family: monospace;
+    }
+    
+    .site-list {
+      background: #f8f9fa;
+      border-radius: 6px;
+      padding: 15px;
+      margin-bottom: 15px;
+      min-height: 100px;
+    }
+    
+    .site-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 8px 12px;
+      background: white;
+      border-radius: 4px;
+      margin-bottom: 8px;
+      border-left: 4px solid #e74c3c;
+    }
+    
+    .site-item:last-child {
+      margin-bottom: 0;
+    }
+    
+    .site-url {
+      font-family: monospace;
+      color: #2c3e50;
+    }
+    
+    .remove-btn {
+      background: #e74c3c;
+      color: white;
+      border: none;
+      padding: 4px 8px;
+      border-radius: 4px;
+      cursor: pointer;
+      font-size: 12px;
+      transition: background 0.3s;
+    }
+    
+    .remove-btn:hover {
+      background: #c0392b;
+    }
+    
+    .btn {
+      background: #3498db;
+      color: white;
+      border: none;
+      padding: 12px 24px;
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 16px;
+      transition: all 0.3s;
+      margin-right: 10px;
+    }
+    
+    .btn:hover {
+      background: #2980b9;
+    }
+    
+    .btn-secondary {
+      background: #95a5a6;
+    }
+    
+    .btn-secondary:hover {
+      background: #7f8c8d;
+    }
+    
+    .actions {
+      text-align: center;
+      padding-top: 20px;
+      border-top: 2px solid #ecf0f1;
+    }
+    
+    .help-text {
+      font-size: 12px;
+      color: #7f8c8d;
+      margin-top: 5px;
+      font-style: italic;
+    }
+    
+    .success-message {
+      background: #d5edda;
+      color: #155724;
+      padding: 12px;
+      border-radius: 6px;
+      margin-bottom: 20px;
+      display: none;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="header">
+      <h1>🛡️ FocusGuard Settings</h1>
+      <p>Configure your website blocking preferences</p>
+    </div>
+    
+    <div class="content">
+      <div class="success-message" id="success-message">
+        Settings saved successfully!
+      </div>
+      
+      <div class="section">
+        <h2>Blocked Websites</h2>
+        <div class="site-list" id="site-list">
+          <!-- Sites will be populated here -->
+        </div>
+        
+        <div class="input-group">
+          <label for="new-site">Add New Site:</label>
+          <input type="url" id="new-site" placeholder="https://example.com" />
+          <div class="help-text">
+            Enter the full URL. Use * for wildcards (e.g., *://facebook.com/* blocks all Facebook pages)
+          </div>
+        </div>
+        
+        <button class="btn" id="add-site-btn">Add Site</button>
+      </div>
+      
+      <div class="section">
+        <h2>Quick Import</h2>
+        <div class="input-group">
+          <label for="bulk-sites">Import Multiple Sites:</label>
+          <textarea id="bulk-sites" placeholder="Enter one URL per line&#10;https://facebook.com&#10;https://twitter.com&#10;https://reddit.com"></textarea>
+          <div class="help-text">
+            Enter one URL per line. These will be added to your blocked list.
+          </div>
+        </div>
+        
+        <button class="btn btn-secondary" id="import-btn">Import Sites</button>
+        <button class="btn btn-secondary" id="reset-btn">Reset to Defaults</button>
+      </div>
+      
+      <div class="actions">
+        <button class="btn" id="save-btn">Save Settings</button>
+        <span style="margin: 0 10px; color: #7f8c8d;">Settings are saved automatically</span>
+      </div>
+    </div>
+  </div>
+  
+  <script src="options.js"></script>
+</body>
+</html>
