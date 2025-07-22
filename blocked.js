@@ -30,6 +30,14 @@ document.addEventListener('DOMContentLoaded', () => {
   // Set up bypass button
   bypassBtn.addEventListener('click', bypassBlock);
 
+  // Set up go back button
+  const goBackBtn = document.getElementById('go-back-btn');
+  if (goBackBtn) {
+    goBackBtn.addEventListener('click', () => {
+      window.history.back();
+    });
+  }
+
   async function loadStats() {
     try {
       const data = await chrome.storage.sync.get(['bypassAttempts']);
