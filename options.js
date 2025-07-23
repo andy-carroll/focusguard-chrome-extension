@@ -8,7 +8,6 @@ document.addEventListener('DOMContentLoaded', async () => {
   const bulkSitesTextarea = document.getElementById('bulk-sites');
   const importBtn = document.getElementById('import-btn');
   const resetBtn = document.getElementById('reset-btn');
-  const saveBtn = document.getElementById('save-btn');
   const successMessage = document.getElementById('success-message');
 
   // Load current settings
@@ -28,10 +27,7 @@ document.addEventListener('DOMContentLoaded', async () => {
   // Reset to defaults
   resetBtn.addEventListener('click', resetToDefaults);
 
-  // Save settings (though they auto-save)
-  saveBtn.addEventListener('click', () => {
-    showSuccessMessage();
-  });
+  // All settings are auto-saved when changes are made
 
   async function loadSites() {
     try {
