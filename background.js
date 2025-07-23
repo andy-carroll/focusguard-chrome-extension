@@ -50,31 +50,87 @@ async function updateBlockingRules() {
   }
 
   // Create blocking rules for each site
-  const rules = blockedSites.map((site, index) => {
+  const rules = [];
+  
+  blockedSites.forEach((site, index) => {
     // Convert wildcard pattern to proper URL filter
-    // Build a simple urlFilter for the domain pattern
     let urlFilter;
+    
     if (site.includes('*://')) {
-      const domain = site.replace('*://', '').replace('/*', '').replace('www.', '');
+      // Extract the domain part (everything after *:// and before /*)
+      const domain = site.replace('*://', '').replace('/*', '');
+      
+      // Create a rule that matches the exact pattern provided
       urlFilter = `*://${domain}/*`;
-    } else {
-      urlFilter = site;
-    }
-
-    return {
-      id: index + 1,
-      priority: 1,
-      action: {
-        type: 'redirect',
-        redirect: {
-          url: chrome.runtime.getURL('blocked.html')
+      
+      rules.push({
+        id: rules.length + 1,
+        priority: 1,
+        action: {
+          type: 'redirect',
+          redirect: {
+            url: chrome.runtime.getURL('blocked.html')
+          }
+        },
+        condition: {
+          urlFilter: urlFilter,
+          resourceTypes: ['main_frame']
         }
-      },
-      condition: {
-        urlFilter: urlFilter,
-        resourceTypes: ['main_frame']
+      });
+      
+      // If the domain doesn't start with www., also block the www. version
+      if (!domain.startsWith('www.')) {
+        rules.push({
+          id: rules.length + 1,
+          priority: 1,
+          action: {
+            type: 'redirect',
+            redirect: {
+              url: chrome.runtime.getURL('blocked.html')
+            }
+          },
+          condition: {
+            urlFilter: `*://www.${domain}/*`,
+            resourceTypes: ['main_frame']
+          }
+        });
       }
-    };
+      
+      // If the domain starts with www., also block the non-www version
+      if (domain.startsWith('www.')) {
+        const nonWwwDomain = domain.substring(4); // Remove 'www.'
+        rules.push({
+          id: rules.length + 1,
+          priority: 1,
+          action: {
+            type: 'redirect',
+            redirect: {
+              url: chrome.runtime.getURL('blocked.html')
+            }
+          },
+          condition: {
+            urlFilter: `*://${nonWwwDomain}/*`,
+            resourceTypes: ['main_frame']
+          }
+        });
+      }
+    } else {
+      // Handle non-wildcard patterns as-is
+      rules.push({
+        id: rules.length + 1,
+        priority: 1,
+        action: {
+          type: 'redirect',
+          redirect: {
+            url: chrome.runtime.getURL('blocked.html')
+          }
+        },
+        condition: {
+          urlFilter: site,
+          resourceTypes: ['main_frame']
+        }
+      });
+    }
   });
 
   try {
