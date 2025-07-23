@@ -14,8 +14,8 @@ const DEFAULT_BLOCKED_SITES = [
   '*://news.ycombinator.com/*',
   '*://cnn.com/*',
   '*://www.cnn.com/*',
-  '*://bbc.co.uk/news/*',
-  '*://www.bbc.co.uk/news/*'
+  '*://bbc.co.uk/*',
+  '*://www.bbc.co.uk/*'
 ];
 
 // Initialize extension
@@ -52,15 +52,15 @@ async function updateBlockingRules() {
   // Create blocking rules for each site
   const rules = blockedSites.map((site, index) => {
     // Convert wildcard pattern to proper URL filter
+    // Build a simple urlFilter for the domain pattern
     let urlFilter;
     if (site.includes('*://')) {
-      // Extract domain from pattern like '*://facebook.com/*'
       const domain = site.replace('*://', '').replace('/*', '').replace('www.', '');
       urlFilter = `*://${domain}/*`;
     } else {
       urlFilter = site;
     }
-    
+
     return {
       id: index + 1,
       priority: 1,

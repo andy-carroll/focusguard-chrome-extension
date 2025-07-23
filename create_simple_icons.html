@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>FocusGuard Icon Generator</title>
+    <style>
+        body { font-family: Arial, sans-serif; padding: 20px; }
+        .icon-container { margin: 20px 0; }
+        canvas { border: 1px solid #ccc; margin: 10px; }
+    </style>
+</head>
+<body>
+    <h1>FocusGuard Icon Generator</h1>
+    <p>Right-click each canvas and "Save image as..." to download the icons.</p>
+    
+    <div class="icon-container">
+        <h3>16x16 Icon (save as icon16.png)</h3>
+        <canvas id="icon16" width="16" height="16"></canvas>
+    </div>
+    
+    <div class="icon-container">
+        <h3>48x48 Icon (save as icon48.png)</h3>
+        <canvas id="icon48" width="48" height="48"></canvas>
+    </div>
+    
+    <div class="icon-container">
+        <h3>128x128 Icon (save as icon128.png)</h3>
+        <canvas id="icon128" width="128" height="128"></canvas>
+    </div>
+
+    <script>
+        function createIcon(canvasId, size) {
+            const canvas = document.getElementById(canvasId);
+            const ctx = canvas.getContext('2d');
+            
+            // Blue background
+            ctx.fillStyle = '#1E40AF';
+            ctx.fillRect(0, 0, size, size);
+            
+            // White border
+            const borderWidth = Math.max(1, Math.floor(size / 16));
+            ctx.strokeStyle = 'white';
+            ctx.lineWidth = borderWidth;
+            ctx.strokeRect(borderWidth/2, borderWidth/2, size - borderWidth, size - borderWidth);
+            
+            // White "FG" text
+            ctx.fillStyle = 'white';
+            ctx.textAlign = 'center';
+            ctx.textBaseline = 'middle';
+            
+            const fontSize = Math.max(8, Math.floor(size / 3));
+            ctx.font = `bold ${fontSize}px Arial`;
+            ctx.fillText('FG', size / 2, size / 2);
+        }
+
+        // Create all icons
+        createIcon('icon16', 16);
+        createIcon('icon48', 48);
+        createIcon('icon128', 128);
+    </script>
+</body>
+</html>

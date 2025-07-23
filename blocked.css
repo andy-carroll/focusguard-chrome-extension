@@ -1,0 +1,105 @@
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  background: #f8f9fa;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  color: #2c3e50;
+}
+
+.container {
+  text-align: center;
+  background: white;
+  padding: 40px;
+  border-radius: 12px;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+  max-width: 500px;
+}
+
+.icon {
+  font-size: 64px;
+  margin-bottom: 20px;
+}
+
+h1 {
+  color: #e74c3c;
+  margin-bottom: 10px;
+  font-size: 28px;
+}
+
+p {
+  color: #7f8c8d;
+  margin-bottom: 30px;
+  line-height: 1.6;
+}
+
+.bypass-section {
+  background: #ecf0f1;
+  padding: 20px;
+  border-radius: 8px;
+  margin-top: 30px;
+  text-align: center;
+}
+
+.countdown {
+  font-size: 24px;
+  font-weight: bold;
+  color: #e74c3c;
+  margin-bottom: 15px;
+}
+
+.bypass-btn {
+  background: #3498db;
+  color: white;
+  padding: 12px 24px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 16px;
+  transition: all 0.3s;
+}
+
+.bypass-btn:hover:not(:disabled) {
+  background: #2980b9;
+}
+
+.bypass-btn:disabled {
+  background: #bdc3c7;
+  cursor: not-allowed;
+}
+
+.go-back-btn {
+  background: #95a5a6;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  margin-top: 20px;
+  font-size: 16px;
+  transition: background 0.3s;
+}
+
+.go-back-btn:hover {
+  background: #7f8c8d;
+}
+
+.test-mode-text {
+  text-align: center;
+  margin-top: 20px;
+  color: #7f8c8d;
+}
+
+.button-container {
+  text-align: center;
+  margin-top: 20px;
+}
+
+.stats {
+  margin-top: 20px;
+  font-size: 14px;
+  color: #95a5a6;
+}

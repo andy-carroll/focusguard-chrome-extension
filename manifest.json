@@ -31,12 +31,12 @@
   },
   "options_page": "options.html",
   "content_security_policy": {
-    "extension_pages": "script-src 'self'; object-src 'self';",
-    "sandbox": "script-src 'self' 'sha256-iAlI6aqmOfT66/FUrAVO/kTyRAinVBoXgd6ZKcTrsUo='; object-src 'self';"
+    "extension_pages": "script-src 'self'; object-src 'self';"
   },
-  "sandbox": {
-    "pages": [
-      "blocked.html"
-    ]
-  }
+  "web_accessible_resources": [
+    {
+      "resources": [ "blocked.html", "blocked.css", "blocked.js" ],
+      "matches": [ "<all_urls>" ]
+    }
+  ]
 }
