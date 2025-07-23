@@ -33,7 +33,7 @@
 
   "web_accessible_resources": [
     {
-      "resources": [ "blocked.html", "blocked.css" ],
+      "resources": [ "blocked.html" ],
       "matches": [ "<all_urls>" ]
     }
   ]

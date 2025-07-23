@@ -2,24 +2,41 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <title>Site Blocked - FocusGuard</title>
-  <link rel="stylesheet" type="text/css" href="blocked.css">
+  <title>Site Blocked</title>
+  <style>
+    body { 
+      font-family: -apple-system, BlinkMacSystemFont, sans-serif; 
+      text-align: center; 
+      padding: 50px; 
+      background: #f8f9fa; 
+      color: #2c3e50; 
+    }
+    .container { 
+      max-width: 400px; 
+      margin: 0 auto; 
+      background: white; 
+      padding: 40px; 
+      border-radius: 12px; 
+      box-shadow: 0 4px 20px rgba(0,0,0,0.1); 
+    }
+    .icon { font-size: 48px; margin-bottom: 20px; }
+    h1 { color: #e74c3c; margin-bottom: 20px; }
+    p { color: #7f8c8d; line-height: 1.6; }
+    @media (prefers-color-scheme: dark) {
+      body { background: #121212; color: #ecf0f1; }
+      .container { background: #1e1e1e; }
+      h1 { color: #ff7675; }
+      p { color: #bdc3c7; }
+    }
+  </style>
 </head>
 <body>
   <div class="container">
     <div class="icon">🛡️</div>
     <h1>Site Blocked</h1>
-    <p>This site is blocked to help you stay focused during work time.</p>
-    
-    <div class="bypass-section">
-      <div class="countdown">🚫 Site blocked during work time</div>
-      <p class="message">
-        <strong>Focus Mode Active:</strong> This site has been blocked to help you stay productive.
-      </p>
-      <p class="instructions">
-        Close this tab or use your browser's back button to return to productive work.
-      </p>
-    </div>
+    <p><strong>Focus Mode Active</strong></p>
+    <p>This site has been blocked to help you stay productive.</p>
+    <p>Close this tab to return to your important work.</p>
   </div>
 </body>
 </html>
