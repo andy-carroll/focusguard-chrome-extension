@@ -195,27 +195,14 @@
         </div>
         
         <div class="input-group">
-          <label for="new-site">Add New Site:</label>
-          <input type="url" id="new-site" placeholder="https://example.com" />
+          <label for="sites-input">Add Blocked Sites:</label>
+          <textarea id="sites-input" rows="4" placeholder="Enter URLs one per line or comma-separated:&#10;facebook.com&#10;twitter.com, reddit.com&#10;https://news.ycombinator.com"></textarea>
           <div class="help-text">
-            Enter the full URL. Use * for wildcards (e.g., *://facebook.com/* blocks all Facebook pages)
+            Enter one or more URLs (one per line or comma-separated). Protocol optional - https:// added automatically.
           </div>
         </div>
         
-        <button class="btn" id="add-site-btn">Add Site</button>
-      </div>
-      
-      <div class="section">
-        <h2>Quick Import</h2>
-        <div class="input-group">
-          <label for="bulk-sites">Import Multiple Sites:</label>
-          <textarea id="bulk-sites" placeholder="Enter one URL per line&#10;https://facebook.com&#10;https://twitter.com&#10;https://reddit.com"></textarea>
-          <div class="help-text">
-            Enter one URL per line. These will be added to your blocked list.
-          </div>
-        </div>
-        
-        <button class="btn btn-secondary" id="import-btn">Import Sites</button>
+        <button class="btn" id="add-sites-btn">Add Sites</button>
         <button class="btn btn-secondary" id="reset-btn">Reset to Defaults</button>
       </div>
       

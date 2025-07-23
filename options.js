@@ -3,26 +3,21 @@
 
 document.addEventListener('DOMContentLoaded', async () => {
   const siteList = document.getElementById('site-list');
-  const newSiteInput = document.getElementById('new-site');
-  const addSiteBtn = document.getElementById('add-site-btn');
-  const bulkSitesTextarea = document.getElementById('bulk-sites');
-  const importBtn = document.getElementById('import-btn');
+  const sitesInput = document.getElementById('sites-input');
+  const addSitesBtn = document.getElementById('add-sites-btn');
   const resetBtn = document.getElementById('reset-btn');
   const successMessage = document.getElementById('success-message');
 
   // Load current settings
   await loadSites();
 
-  // Add single site
-  addSiteBtn.addEventListener('click', addSite);
-  newSiteInput.addEventListener('keypress', (e) => {
-    if (e.key === 'Enter') {
-      addSite();
+  // Add sites (single or multiple)
+  addSitesBtn.addEventListener('click', addSites);
+  sitesInput.addEventListener('keypress', (e) => {
+    if (e.key === 'Enter' && (e.ctrlKey || e.metaKey)) {
+      addSites();
     }
   });
-
-  // Import multiple sites
-  importBtn.addEventListener('click', importSites);
 
   // Reset to defaults
   resetBtn.addEventListener('click', resetToDefaults);
@@ -62,70 +57,61 @@ document.addEventListener('DOMContentLoaded', async () => {
     `).join('');
   }
 
-  async function addSite() {
-    const url = newSiteInput.value.trim();
+  async function addSites() {
+    const input = sitesInput.value.trim();
     
-    if (!url) {
-      alert('Please enter a URL');
-      return;
-    }
-
-    try {
-      const { blockedSites } = await chrome.storage.sync.get(['blockedSites']);
-      const sites = blockedSites || [];
-      
-      // Convert URL to wildcard format if needed
-      const formattedUrl = formatUrl(url);
-      
-      if (sites.includes(formattedUrl)) {
-        alert('This site is already blocked');
-        return;
-      }
-
-      sites.push(formattedUrl);
-      await chrome.storage.sync.set({ blockedSites: sites });
-      
-      newSiteInput.value = '';
-      renderSiteList(sites);
-      showSuccessMessage();
-    } catch (error) {
-      console.error('Error adding site:', error);
-      alert('Error adding site. Please try again.');
-    }
-  }
-
-  async function importSites() {
-    const urls = bulkSitesTextarea.value
-      .split('\n')
-      .map(url => url.trim())
-      .filter(url => url.length > 0);
-
-    if (urls.length === 0) {
+    if (!input) {
       alert('Please enter at least one URL');
       return;
     }
 
     try {
+      // Smart parsing: handle both line-separated and comma-separated input
+      const urls = input
+        .split(/[\n,]+/) // Split by newlines OR commas
+        .map(url => url.trim())
+        .filter(url => url.length > 0);
+
+      if (urls.length === 0) {
+        alert('Please enter at least one valid URL');
+        return;
+      }
+
       const { blockedSites } = await chrome.storage.sync.get(['blockedSites']);
       const sites = blockedSites || [];
       
       let addedCount = 0;
+      const duplicates = [];
+      
       urls.forEach(url => {
         const formattedUrl = formatUrl(url);
         if (!sites.includes(formattedUrl)) {
           sites.push(formattedUrl);
           addedCount++;
+        } else {
+          duplicates.push(url);
         }
       });
 
       await chrome.storage.sync.set({ blockedSites: sites });
       
-      bulkSitesTextarea.value = '';
+      sitesInput.value = '';
       renderSiteList(sites);
-      showSuccessMessage(`Added ${addedCount} new sites`);
+      
+      // Show appropriate success message
+      if (addedCount === 1) {
+        showSuccessMessage('Added 1 new site');
+      } else if (addedCount > 1) {
+        showSuccessMessage(`Added ${addedCount} new sites`);
+      }
+      
+      if (duplicates.length > 0 && addedCount === 0) {
+        showSuccessMessage('All sites were already in your blocked list');
+      }
+      
     } catch (error) {
-      console.error('Error importing sites:', error);
-      alert('Error importing sites. Please try again.');
+      console.error('Error adding sites:', error);
+      alert('Error adding sites. Please try again.');
     }
   }
 
