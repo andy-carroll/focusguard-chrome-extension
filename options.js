@@ -28,6 +28,14 @@ document.addEventListener('DOMContentLoaded', async () => {
   resetBtn.addEventListener('click', resetToDefaults);
 
   // All settings are auto-saved when changes are made
+  
+  // Use event delegation for remove buttons
+  siteList.addEventListener('click', (e) => {
+    if (e.target.classList.contains('remove-btn')) {
+      const index = parseInt(e.target.getAttribute('data-index'));
+      removeSite(index);
+    }
+  });
 
   async function loadSites() {
     try {
@@ -49,7 +57,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     siteList.innerHTML = sites.map((site, index) => `
       <div class="site-item">
         <span class="site-url">${escapeHtml(site)}</span>
-        <button class="remove-btn" onclick="removeSite(${index})">Remove</button>
+        <button class="remove-btn" data-index="${index}">Remove</button>
       </div>
     `).join('');
   }
@@ -121,7 +129,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     }
   }
 
-  window.removeSite = async function(index) {
+  async function removeSite(index) {
     try {
       const { blockedSites } = await chrome.storage.sync.get(['blockedSites']);
       const sites = blockedSites || [];
@@ -130,12 +138,12 @@ document.addEventListener('DOMContentLoaded', async () => {
       await chrome.storage.sync.set({ blockedSites: sites });
       
       renderSiteList(sites);
-      showSuccessMessage();
+      showSuccessMessage('Site removed successfully!');
     } catch (error) {
       console.error('Error removing site:', error);
       alert('Error removing site. Please try again.');
     }
-  };
+  }
 
   async function resetToDefaults() {
     if (!confirm('This will reset all your blocked sites to the default list. Are you sure?')) {
