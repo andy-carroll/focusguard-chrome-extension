@@ -103,3 +103,40 @@ p {
   font-size: 14px;
   color: #95a5a6;
 }
+
+/* Dark mode styles */
+@media (prefers-color-scheme: dark) {
+  body {
+    background: #121212;
+    color: #ecf0f1;
+  }
+
+  .container {
+    background: #1e1e1e;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.6);
+  }
+
+  .bypass-section {
+    background: #2c2c2c;
+  }
+
+  h1 {
+    color: #ff7675;
+  }
+
+  p {
+    color: #bdc3c7;
+  }
+
+  .countdown {
+    color: #ff7675;
+  }
+
+  .go-back-btn {
+    background: #636e72;
+  }
+
+  .go-back-btn:hover {
+    background: #b2bec3;
+  }
+}
