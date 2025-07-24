@@ -1,8 +1,8 @@
 {
   "manifest_version": 3,
-  "name": "FocusGuard",
+  "name": "FocusGuard: Website Blocker",
   "version": "0.1.0",
-  "description": "Block distracting websites with meaningful friction to stay focused",
+  "description": "Stay focused by blocking distracting websites. Take control of your online time with simple, effective website blocking.",
   "permissions": [
     "storage",
     "declarativeNetRequest",
