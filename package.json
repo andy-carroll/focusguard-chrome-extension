@@ -1,0 +1,27 @@
+{
+  "name": "focusguard-extension",
+  "version": "1.0.0",
+  "description": "[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)",
+  "main": "background.js",
+  "scripts": {
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/andy-carroll/focusguard-chrome-extension.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "jest": {
+    "testEnvironment": "jsdom"
+  },
+  "bugs": {
+    "url": "https://github.com/andy-carroll/focusguard-chrome-extension/issues"
+  },
+  "homepage": "https://github.com/andy-carroll/focusguard-chrome-extension#readme",
+  "devDependencies": {
+    "jest": "^29.7.0",
+    "jest-environment-jsdom": "^29.7.0"
+  }
+}

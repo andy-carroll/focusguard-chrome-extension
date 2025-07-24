@@ -1,6 +1,28 @@
 // FocusGuard Options Script
 // Handles the settings page functionality
 
+// Helper function, moved to top-level for testability
+function formatUrl(url) {
+  // If url is empty, invalid, or already a wildcard, return as-is
+  if (!url || url.includes('*') || !url.includes('.')) {
+    return url;
+  }
+
+  // Add protocol if missing
+  if (!url.startsWith('http://') && !url.startsWith('https://')) {
+    url = 'https://' + url;
+  }
+
+  try {
+    const urlObj = new URL(url);
+    // Convert to wildcard format for blocking
+    return `*://${urlObj.hostname}/*`;
+  } catch (error) {
+    // If URL parsing fails, return as-is and let Chrome handle the error
+    return url;
+  }
+}
+
 document.addEventListener('DOMContentLoaded', async () => {
   const siteList = document.getElementById('site-list');
   const sitesInput = document.getElementById('sites-input');
@@ -162,27 +184,6 @@ document.addEventListener('DOMContentLoaded', async () => {
     }
   }
 
-  function formatUrl(url) {
-    // If it's already in wildcard format, return as-is
-    if (url.includes('*')) {
-      return url;
-    }
-
-    // Add protocol if missing
-    if (!url.startsWith('http://') && !url.startsWith('https://')) {
-      url = 'https://' + url;
-    }
-
-    try {
-      const urlObj = new URL(url);
-      // Convert to wildcard format for blocking
-      return `*://${urlObj.hostname}/*`;
-    } catch (error) {
-      // If URL parsing fails, return as-is and let Chrome handle the error
-      return url;
-    }
-  }
-
   function escapeHtml(text) {
     const div = document.createElement('div');
     div.textContent = text;
@@ -198,3 +199,8 @@ document.addEventListener('DOMContentLoaded', async () => {
     }, 3000);
   }
 });
+
+// Export for testing purposes
+if (typeof module !== 'undefined' && module.exports) {
+  module.exports = { formatUrl };
+}
