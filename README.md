@@ -1,83 +1,54 @@
-# FocusGuard Chrome Extension
+# FocusGuard: Website Blocker for Chrome
 
-A Chrome extension that blocks distracting websites with meaningful friction to help you stay focused during work time.
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
-## Features
+**A simple, powerful, and private way to block distracting websites and reclaim your focus.**
 
-### Week 1 MVP ✅
-- **Website Blocking**: Block specific sites during work hours
-- **10-Second Bypass Timer**: Friction to make bypassing uncomfortable
-- **Quick Settings**: Easy toggle on/off and site management
-- **Basic Analytics**: Track bypass attempts
-- **Break Mode**: 15-minute quick break option
+FocusGuard helps you create a distraction-free online environment so you can get more done. It's built to be lightweight, easy to use, and completely private.
 
-### Planned Features
-- **Week 2**: Google Calendar integration for automatic work/break detection
-- **Week 3**: Progressive friction (longer delays, challenges, goal reminders)
-- **Week 4**: Detailed analytics, weekly reports, data export
+<!-- You can replace this with a real screenshot or GIF later -->
+<!-- ![FocusGuard Screenshot](link-to-your-screenshot.png) -->
 
-## Installation
+## ✨ Key Features
 
-1. Open Chrome and go to `chrome://extensions/`
-2. Enable "Developer mode" (toggle in top-right)
-3. Click "Load unpacked" and select the `focusguard-extension` folder
-4. The extension should now appear in your toolbar
+* **Effortless Site Blocking**: Quickly add or remove any website from your blocklist.
+* **Block Multiple Sites at Once**: Paste a list of sites separated by commas, spaces, or new lines.
+* **Clean & Minimalist UI**: An intuitive interface that gets out of your way.
+* **Dark Mode Ready**: Easy on the eyes for those late-night work sessions.
+* **100% Private**: We never track your activity or collect your data.
 
-## Usage
+## 🚀 Installation
 
-1. **First Setup**: Click the FocusGuard icon and go to Settings to add websites you want to block
-2. **Default Sites**: Includes Facebook, Twitter/X, Reddit, Hacker News, CNN, BBC News
-3. **Quick Toggle**: Use the popup to enable/disable blocking quickly
-4. **Break Mode**: Take a 15-minute break when you need it
-5. **Bypass**: When blocked, wait 10 seconds then click "Continue to Site" (friction by design!)
+The easiest way to install FocusGuard is from the Chrome Web Store:
 
-## Development Roadmap
+**[➡️ Get FocusGuard from the Chrome Web Store](https://chrome.google.com/webstore/category/extensions)**
+*(Note: Link will be updated once the extension is live)*
 
-### Week 1: Core Blocker (Current) 🎯
-**Goal**: Block specific sites with simple bypass timer
+### Manual Installation (for Developers)
 
-### Week 2: Work Hours Integration
-**Goal**: Only block during calendar work time
-- Google Calendar API integration
-- Detect "busy" calendar events
-- Manual work/break toggle fallback
+1. Clone this repository: `git clone https://github.com/andy-carroll/focusguard-chrome-extension.git`
+2. Open Chrome and navigate to `chrome://extensions`.
+3. Enable "Developer mode" in the top-right corner.
+4. Click "Load unpacked" and select the cloned repository folder.
 
-### Week 3: Meaningful Friction
-**Goal**: Make bypassing genuinely uncomfortable
-- Progressive delays (10s → 30s → 60s per attempt)
-- "Why do you want to visit this?" text requirement
-- Math problems or typing challenges
-- Personal goal reminders
+## 🔒 Privacy First
 
-### Week 4: Analytics & Polish
-**Goal**: Data insights and Chrome Web Store ready
-- Detailed bypass tracking
-- Focus time calculations
-- Weekly summary reports
-- Export functionality
-- Chrome Web Store submission
+Your privacy is a core feature.
 
-## Tech Stack
-- **Manifest V3** (latest Chrome extension format)
-- **Vanilla JavaScript** (no external dependencies)
-- **Chrome APIs**: Storage, DeclarativeNetRequest, Identity
-- **Future**: Google Calendar API integration
+* The extension **does not** collect any personal information or browsing data.
+* Your blocklist is stored locally on your computer and is never sent to any server.
+* There are no analytics, trackers, or third-party scripts.
 
-## File Structure
-```
-focusguard-extension/
-├── manifest.json          # Extension configuration
-├── background.js          # Service worker (blocking logic)
-├── blocked.html           # Page shown when site is blocked
-├── popup.html            # Extension popup interface
-├── popup.js              # Popup functionality
-├── options.html          # Settings page
-├── options.js            # Settings functionality
-└── README.md             # This file
-```
+You can read our full [Privacy Policy](PRIVACY_POLICY.md) for more details.
 
-## Contributing
-This is a personal productivity tool being built with an ultra-lean, milestone-driven approach. Each week focuses on one key outcome.
+## 🤝 How to Contribute
 
-## License
-MIT License - Feel free to use and modify for your own focus needs!
+We welcome contributions of all kinds! Whether you're a developer, a designer, or just an enthusiastic user, you can help make FocusGuard better.
+
+* **Report a Bug**: Found something that's not working right? [Open an issue](https://github.com/andy-carroll/focusguard-chrome-extension/issues).
+* **Suggest a Feature**: Have a great idea? [Let us know](https://github.com/andy-carroll/focusguard-chrome-extension/issues).
+* **Write Code**: Want to fix a bug or add a feature? Fork the repository and submit a pull request.
+
+## ⚖️ License
+
+This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
