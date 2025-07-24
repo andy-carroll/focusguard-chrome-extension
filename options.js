@@ -23,6 +23,17 @@ function formatUrl(url) {
   }
 }
 
+function escapeHtml(text) {
+  const map = {
+    '&': '&amp;',
+    '<': '&lt;',
+    '>': '&gt;',
+    '"': '&quot;',
+    "'": '&#039;'
+  };
+  return text.replace(/[&<>"']/g, (m) => map[m]);
+}
+
 document.addEventListener('DOMContentLoaded', async () => {
   const siteList = document.getElementById('site-list');
   const sitesInput = document.getElementById('sites-input');
@@ -184,12 +195,6 @@ document.addEventListener('DOMContentLoaded', async () => {
     }
   }
 
-  function escapeHtml(text) {
-    const div = document.createElement('div');
-    div.textContent = text;
-    return div.innerHTML;
-  }
-
   function showSuccessMessage(message = 'Settings saved successfully!') {
     successMessage.textContent = message;
     successMessage.style.display = 'block';
@@ -202,5 +207,5 @@ document.addEventListener('DOMContentLoaded', async () => {
 
 // Export for testing purposes
 if (typeof module !== 'undefined' && module.exports) {
-  module.exports = { formatUrl };
+  module.exports = { formatUrl, escapeHtml };
 }

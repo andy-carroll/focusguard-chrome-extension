@@ -31,6 +31,22 @@ The easiest way to install FocusGuard is from the Chrome Web Store:
 3. Enable "Developer mode" in the top-right corner.
 4. Click "Load unpacked" and select the cloned repository folder.
 
+### Development & Testing
+
+If you want to contribute to the development, you'll need to install the development dependencies and run the tests.
+
+1. **Install Dependencies**: After cloning the repository, navigate to the project folder in your terminal and run:
+
+   ```bash
+   npm install
+   ```
+
+2. **Running Tests**: To run the automated test suite, use the following command:
+
+   ```bash
+   npm test
+   ```
+
 ## 🔒 Privacy First
 
 Your privacy is a core feature.

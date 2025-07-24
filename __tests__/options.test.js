@@ -1,4 +1,4 @@
-const { formatUrl } = require('../options.js');
+const { formatUrl, escapeHtml } = require('../options.js');
 
 describe('formatUrl', () => {
   test('should add protocol and wildcards to a simple domain', () => {
@@ -31,5 +31,27 @@ describe('formatUrl', () => {
 
   test('should handle an empty string by returning it', () => {
     expect(formatUrl('')).toBe('');
+  });
+});
+
+describe('escapeHtml', () => {
+  test('should return a simple string as-is', () => {
+    expect(escapeHtml('hello world')).toBe('hello world');
+  });
+
+  test('should escape < and > characters', () => {
+    expect(escapeHtml('<script>alert("xss")</script>')).toBe('&lt;script&gt;alert(&quot;xss&quot;)&lt;/script&gt;');
+  });
+
+  test('should escape &, \", and \' characters', () => {
+    expect(escapeHtml('"Fish & Chips"')).toBe('&quot;Fish &amp; Chips&quot;');
+  });
+
+  test('should handle an empty string', () => {
+    expect(escapeHtml('')).toBe('');
+  });
+
+  test('should handle strings that are just numbers', () => {
+    expect(escapeHtml('12345')).toBe('12345');
   });
 });
