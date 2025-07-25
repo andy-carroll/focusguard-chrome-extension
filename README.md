@@ -2,6 +2,7 @@
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![Tests](https://github.com/andy-carroll/focusguard-chrome-extension/actions/workflows/test.yml/badge.svg)](https://github.com/andy-carroll/focusguard-chrome-extension/actions)
+[![CI](https://github.com/andy-carroll/focusguard-chrome-extension/actions/workflows/test.yml/badge.svg)](https://github.com/andy-carroll/focusguard-chrome-extension/actions/workflows/test.yml)
 
 **A simple, powerful, and private way to block distracting websites and reclaim your focus.**
 
@@ -62,20 +63,22 @@ You can read our full [Privacy Policy](PRIVACY_POLICY.md) for more details.
 
 FocusGuard maintains a comprehensive automated/unit testing setup to ensure reliability and safe evolution of the codebase.
 
-- **Framework:** Jest (with jsdom for browser-like environments)
-- **Test Coverage:**
-  - Core logic (blocking rule generation, URL formatting, HTML escaping)
-  - Chrome Extension API integration (mocked)
-  - Edge cases and regression prevention
-- **How to Run:**
+* **Framework:** Jest (with jsdom for browser-like environments)
+* **Test Coverage:**
+  * Core logic (blocking rule generation, URL formatting, HTML escaping)
+  * Chrome Extension API integration (mocked)
+  * Edge cases and regression prevention
+* **How to Run:**
+
   ```bash
   npm test
   ```
-- **Best Practices:**
-  - All pure logic is unit tested
-  - Side-effect logic is covered via mocks
-  - Mocks are reset between tests for isolation
-  - New features must be accompanied by relevant tests
+
+* **Best Practices:**
+  * All pure logic is unit tested
+  * Side-effect logic is covered via mocks
+  * Mocks are reset between tests for isolation
+  * New features must be accompanied by relevant tests
 
 > **Maintaining a strong automated testing discipline is a crucial aspect of FocusGuard.** As the project grows, all contributors are expected to uphold and extend this standard.
 
@@ -87,6 +90,25 @@ We welcome contributions of all kinds! Whether you're a developer, a designer, o
 * **Suggest a Feature**: Have a great idea? [Let us know](https://github.com/andy-carroll/focusguard-chrome-extension/issues).
 * **Write Code**: Want to fix a bug or add a feature? Fork the repository and submit a pull request.
 
-## ⚖️ License
+## 👥 Contributing
 
-This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
+We welcome contributions from the community! Before you start, please read our [Contribution Guidelines](CONTRIBUTING.md) and [Security Policy](SECURITY.md).
+
+### Quick Start for Contributors
+
+1. Fork the repository
+2. Set up [signed commits](SECURITY.md#signed-commits)
+3. Create a feature branch (`git checkout -b feature/amazing-feature`)
+4. Commit your changes (`git commit -S -m 'Add some amazing feature'`)
+5. Push to the branch (`git push origin feature/amazing-feature`)
+6. Open a Pull Request
+
+All commits must be signed with a verified signature. See our [Security Policy](SECURITY.md) for setup instructions.
+
+## 🔒 Security
+
+Security is a top priority. Please report any security vulnerabilities to [security@example.com](mailto:security@example.com). For more information, see our [Security Policy](SECURITY.md).
+
+## 📝 License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.

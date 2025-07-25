@@ -24,6 +24,7 @@ Want to contribute or suggest a feature? Open an issue or discussion on GitHub!
 - [x] **One-Click Packaging** - Streamlined releases (2025-07-24)
 - [x] **Public privacy policy and README overhaul** (2025-07-25)
 - [x] **Unit & Integration Testing** (2025-07-26)
+- [x] **GitHub Actions CI/CD Pipeline** - Automated testing on every push/PR (2025-07-26)
 
 ## 📋 Roadmap
 
