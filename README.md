@@ -1,6 +1,7 @@
 # FocusGuard: Website Blocker for Chrome
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![Tests](https://github.com/andy-carroll/focusguard-chrome-extension/actions/workflows/test.yml/badge.svg)](https://github.com/andy-carroll/focusguard-chrome-extension/actions)
 
 **A simple, powerful, and private way to block distracting websites and reclaim your focus.**
 
@@ -56,6 +57,27 @@ Your privacy is a core feature.
 * There are no analytics, trackers, or third-party scripts.
 
 You can read our full [Privacy Policy](PRIVACY_POLICY.md) for more details.
+
+## 🧪 Automated Testing & Code Quality
+
+FocusGuard maintains a comprehensive automated/unit testing setup to ensure reliability and safe evolution of the codebase.
+
+- **Framework:** Jest (with jsdom for browser-like environments)
+- **Test Coverage:**
+  - Core logic (blocking rule generation, URL formatting, HTML escaping)
+  - Chrome Extension API integration (mocked)
+  - Edge cases and regression prevention
+- **How to Run:**
+  ```bash
+  npm test
+  ```
+- **Best Practices:**
+  - All pure logic is unit tested
+  - Side-effect logic is covered via mocks
+  - Mocks are reset between tests for isolation
+  - New features must be accompanied by relevant tests
+
+> **Maintaining a strong automated testing discipline is a crucial aspect of FocusGuard.** As the project grows, all contributors are expected to uphold and extend this standard.
 
 ## 🤝 How to Contribute
 
