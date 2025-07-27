@@ -1,6 +1,5 @@
 # Node modules (if you add any build tools later)
-# Ignore test files and directories (not needed in git or production extension)
-tests/
+# Test files are included in git for CI, but excluded from production builds via packaging script
 
 node_modules/
 !tests/.gitkeep # (optional) allow keeping the directory structure if empty
