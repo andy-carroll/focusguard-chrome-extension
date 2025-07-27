@@ -1,5 +1,10 @@
 # Node modules (if you add any build tools later)
+# Ignore test files and directories (not needed in git or production extension)
+tests/
+
 node_modules/
+!tests/.gitkeep # (optional) allow keeping the directory structure if empty
+
 
 # OS generated files
 .DS_Store
