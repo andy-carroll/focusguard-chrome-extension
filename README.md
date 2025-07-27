@@ -15,7 +15,7 @@ FocusGuard helps you create a distraction-free online environment so you can get
 
 * **Effortless Site Blocking**: Quickly add or remove any website from your blocklist.
 * **Block Multiple Sites at Once**: Paste a list of sites separated by commas, spaces, or new lines.
-* **Clean & Minimalist UI**: An intuitive interface that gets out of your way.
+* **Clean & Minimalist UI**: A simple, intuitive interface that gets out of your way.
 * **Dark Mode Ready**: Easy on the eyes for those late-night work sessions.
 * **100% Private**: We never track your activity or collect your data.
 
