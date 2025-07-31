@@ -24,7 +24,11 @@ Want to contribute or suggest a feature? Open an issue or discussion on GitHub!
 - [x] **One-Click Packaging** - Streamlined releases (2025-07-24)
 - [x] **Public privacy policy and README overhaul** (2025-07-25)
 - [x] **Unit & Integration Testing** (2025-07-26)
-- [x] **GitHub Actions CI/CD Pipeline** - Automated testing on every push/PR (2025-07-26)
+- [x] **GitHub Actions CI/CD Pipeline** - Automated testing on every push/PR
+- [x] **Chrome Web Store Launch** - Approval granted, extension is live in the store
+- [ ] 
+
+(as of 2025-07-29)
 
 ## 📋 Roadmap
 
@@ -47,7 +51,7 @@ Want to contribute or suggest a feature? Open an issue or discussion on GitHub!
 }}%%
 kanban
     NOW (Jul-Aug 2025)
-        [Chrome Web Store Launch - in review]
+        [Pomodoro-style focus sprint & timer]
         [Unit & Integration Testing Refinements]
         [Onboarding Polish]
         [UI Refinements]
@@ -82,8 +86,9 @@ kanban
 
 - [ ] Cross-device sync
 - [ ] Focus music/sounds
-- [ ] Pomodoro timer integration
 - [ ] Custom block pages
+- [ ] Accessibility features
+- [ ] Free vs Premium tiers
 
 <div align="center">
   <h3>💬 Have Feedback?</h3>
