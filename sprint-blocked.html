@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Focus Sprint Active - Site Blocked</title>
+  <link rel="stylesheet" href="css/styles.css">
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: #f5f7fa;
+      color: #333;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      margin: 0;
+      padding: 20px;
+      text-align: center;
+    }
+    
+    .container {
+      max-width: 600px;
+      background-color: #fff;
+      border-radius: 12px;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+      padding: 40px;
+      margin: 20px;
+    }
+    
+    h1 {
+      color: #3a4a5c;
+      margin-bottom: 20px;
+      font-size: 28px;
+    }
+    
+    .sprint-info {
+      background-color: #f0f7ff;
+      border-radius: 8px;
+      padding: 20px;
+      margin: 20px 0;
+      border-left: 4px solid #2563eb;
+    }
+    
+    .timer {
+      font-size: 32px;
+      font-weight: bold;
+      color: #2563eb;
+      margin: 20px 0;
+    }
+    
+    .goal {
+      font-style: italic;
+      margin-bottom: 15px;
+      color: #4b5563;
+    }
+    
+    .message {
+      font-size: 18px;
+      line-height: 1.6;
+      margin-bottom: 30px;
+    }
+    
+    .buttons {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      width: 100%;
+      max-width: 300px;
+      margin: 0 auto;
+    }
+    
+    button {
+      background-color: #2563eb;
+      color: white;
+      border: none;
+      padding: 12px 20px;
+      border-radius: 6px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background-color 0.2s;
+    }
+    
+    button:hover {
+      background-color: #1d4ed8;
+    }
+    
+    button.secondary {
+      background-color: #e5e7eb;
+      color: #4b5563;
+    }
+    
+    button.secondary:hover {
+      background-color: #d1d5db;
+    }
+    
+    .logo {
+      margin-bottom: 20px;
+    }
+    
+    .logo img {
+      width: 64px;
+      height: 64px;
+    }
+    
+    .progress-container {
+      width: 100%;
+      background-color: #e5e7eb;
+      border-radius: 9999px;
+      height: 8px;
+      margin: 20px 0;
+      overflow: hidden;
+    }
+    
+    .progress-bar {
+      height: 100%;
+      background-color: #2563eb;
+      border-radius: 9999px;
+      transition: width 0.5s ease;
+    }
+    
+    .emoji {
+      font-size: 32px;
+      margin-bottom: 10px;
+    }
+    
+    @media (max-width: 480px) {
+      .container {
+        padding: 20px;
+      }
+      
+      h1 {
+        font-size: 24px;
+      }
+      
+      .message {
+        font-size: 16px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="logo">
+      <img src="icons/icon128.png" alt="FocusGuard Logo">
+    </div>
+    
+    <h1>Focus Sprint in Progress</h1>
+    
+    <div class="emoji">🏃‍♂️💨</div>
+    
+    <div class="message">
+      You're currently in the middle of a Focus Sprint! This site is blocked to help you stay focused.
+    </div>
+    
+    <div class="sprint-info">
+      <div id="timer" class="timer">00:00</div>
+      <div class="progress-container">
+        <div id="progress-bar" class="progress-bar" style="width: 0%"></div>
+      </div>
+      <div id="goal" class="goal"></div>
+    </div>
+    
+    <div class="message">
+      <strong>Remember your goal!</strong> You can do this - stay focused and get back to your task.
+    </div>
+    
+    <div class="buttons">
+      <button id="back-button">Return to Previous Page</button>
+      <button id="cancel-sprint" class="secondary">End Sprint Early</button>
+    </div>
+  </div>
+  
+  <script src="js/sprint-blocked.js"></script>
+</body>
+</html>

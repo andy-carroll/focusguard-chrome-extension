@@ -14,12 +14,12 @@
     
     .header {
       text-align: center;
-      margin-bottom: 20px;
+      margin-bottom: 15px;
     }
     
     .logo {
       font-size: 32px;
-      margin-bottom: 10px;
+      margin-bottom: 5px;
     }
     
     h1 {
@@ -28,6 +28,128 @@
       color: #2c3e50;
     }
     
+    h2 {
+      margin: 0 0 10px 0;
+      font-size: 16px;
+      color: #2c3e50;
+    }
+    
+    /* Focus Sprint Styles */
+    .focus-sprint-section {
+      background: white;
+      padding: 15px;
+      border-radius: 8px;
+      margin-bottom: 15px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    }
+    
+    .sprint-form .form-group {
+      margin-bottom: 10px;
+    }
+    
+    .sprint-form label {
+      display: block;
+      margin-bottom: 5px;
+      font-size: 14px;
+      color: #7f8c8d;
+    }
+    
+    .sprint-form input {
+      width: 100%;
+      padding: 8px;
+      border: 1px solid #ddd;
+      border-radius: 4px;
+      font-size: 14px;
+      box-sizing: border-box;
+    }
+    
+    .duration-buttons {
+      display: flex;
+      gap: 8px;
+      margin-bottom: 5px;
+    }
+    
+    .duration-btn {
+      flex: 1;
+      padding: 5px;
+      border: 1px solid #ddd;
+      border-radius: 4px;
+      background: #f8f9fa;
+      cursor: pointer;
+      font-size: 14px;
+    }
+    
+    .duration-btn.selected {
+      background: #3498db;
+      color: white;
+      border-color: #3498db;
+    }
+    
+    .btn-large {
+      width: 100%;
+      padding: 12px;
+      font-size: 16px;
+      margin-top: 10px;
+    }
+    
+    /* Active Sprint Styles */
+    .active-sprint {
+      text-align: center;
+    }
+    
+    .timer-display {
+      position: relative;
+      width: 120px;
+      height: 120px;
+      margin: 0 auto 15px;
+    }
+    
+    .timer {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      font-size: 24px;
+      font-weight: bold;
+      color: #2c3e50;
+    }
+    
+    .progress-ring-circle {
+      fill: transparent;
+      stroke: #3498db;
+      stroke-width: 8px;
+      stroke-linecap: round;
+      transform: rotate(-90deg);
+      transform-origin: 50% 50%;
+      transition: stroke-dashoffset 0.3s;
+    }
+    
+    .progress-ring-circle-bg {
+      fill: transparent;
+      stroke: #ecf0f1;
+      stroke-width: 8px;
+    }
+    
+    .sprint-goal, .sprint-success {
+      margin-bottom: 10px;
+      font-size: 14px;
+      text-align: left;
+    }
+    
+    /* Completion Styles */
+    .completion-icon {
+      font-size: 36px;
+      margin-bottom: 10px;
+    }
+    
+    .completion-text {
+      font-size: 16px;
+      font-weight: bold;
+      margin-bottom: 15px;
+      color: #27ae60;
+    }
+    
+    /* Toggle Section Styles */
     .toggle-section {
       background: white;
       padding: 15px;
@@ -71,6 +193,7 @@
       transform: translateX(26px);
     }
     
+    /* Stats Section Styles */
     .stats {
       background: white;
       padding: 15px;
@@ -100,13 +223,13 @@
       font-size: 14px;
     }
     
+    /* Action Buttons */
     .actions {
       display: flex;
       gap: 10px;
     }
     
     button {
-      flex: 1;
       padding: 10px;
       border: none;
       border-radius: 6px;
@@ -139,6 +262,23 @@
       font-size: 12px;
       color: #7f8c8d;
     }
+    
+    /* Collapsible sections */
+    .collapsible {
+      margin-top: 5px;
+      font-size: 12px;
+      color: #7f8c8d;
+      text-align: center;
+      cursor: pointer;
+    }
+    
+    .collapsible:hover {
+      text-decoration: underline;
+    }
+    
+    .collapsed {
+      display: none;
+    }
   </style>
 </head>
 <body>
@@ -147,7 +287,16 @@
     <h1>FocusGuard</h1>
   </div>
   
-  <div class="toggle-section">
+  <!-- Focus Sprint Section (Primary Feature) -->
+  <div id="focus-sprint-section" class="focus-sprint-section">
+    <!-- This will be populated by the UI Controller -->
+  </div>
+  
+  <!-- Collapsible Toggle for Additional Options -->
+  <div class="collapsible" id="toggle-additional">Show blocking options</div>
+  
+  <!-- Site Blocking Toggle (Secondary Feature) -->
+  <div id="blocking-section" class="toggle-section collapsed">
     <div class="toggle-row">
       <span>Block websites</span>
       <div class="toggle" id="main-toggle">
@@ -156,7 +305,8 @@
     </div>
   </div>
   
-  <div class="stats">
+  <!-- Stats Section (Secondary Feature) -->
+  <div id="stats-section" class="stats collapsed">
     <div class="stat-row">
       <span class="stat-label">Sites blocked</span>
       <span class="stat-value" id="blocked-count">0</span>
@@ -166,18 +316,23 @@
       <span class="stat-value" id="bypass-attempts">0</span>
     </div>
     <div class="stat-row">
+      <span class="stat-label">Focus time today</span>
+      <span class="stat-value" id="focus-time">0 min</span>
+    </div>
+    <div class="stat-row">
       <span class="stat-label">Status</span>
       <span class="stat-value" id="status">Loading...</span>
     </div>
   </div>
   
+  <!-- Action Buttons -->
   <div class="actions">
     <button class="btn-secondary" id="options-btn">Settings</button>
-    <button class="btn-primary" id="break-btn">Take Break</button>
   </div>
   
   <div class="status" id="version">v0.1.0</div>
   
-  <script src="popup.js"></script>
+  <!-- Scripts -->
+  <script type="module" src="popup.js"></script>
 </body>
 </html>

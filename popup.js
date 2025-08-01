@@ -1,16 +1,46 @@
 // FocusGuard Popup Script
 // Handles the extension popup interface
 
+import { SprintManager } from './js/sprint-manager.js';
+import { UiController } from './js/ui-controller.js';
+
 document.addEventListener('DOMContentLoaded', async () => {
+  // Initialize UI elements
   const mainToggle = document.getElementById('main-toggle');
   const blockedCountEl = document.getElementById('blocked-count');
   const bypassAttemptsEl = document.getElementById('bypass-attempts');
+  const focusTimeEl = document.getElementById('focus-time');
   const statusEl = document.getElementById('status');
   const optionsBtn = document.getElementById('options-btn');
-  const breakBtn = document.getElementById('break-btn');
+  const toggleAdditional = document.getElementById('toggle-additional');
+  const blockingSection = document.getElementById('blocking-section');
+  const statsSection = document.getElementById('stats-section');
+  
+  // Initialize Focus Sprint components
+  const sprintManager = new SprintManager();
+  await sprintManager.initialize();
+  const uiController = new UiController(sprintManager);
+  
+  // Initialize the Focus Sprint UI (now that sprint state is loaded)
+  uiController.initializeUi();
   
   // Load current settings and stats
   await loadData();
+  
+  // Toggle additional options visibility
+  toggleAdditional.addEventListener('click', () => {
+    const isCollapsed = blockingSection.classList.contains('collapsed');
+    
+    if (isCollapsed) {
+      blockingSection.classList.remove('collapsed');
+      statsSection.classList.remove('collapsed');
+      toggleAdditional.textContent = 'Hide blocking options';
+    } else {
+      blockingSection.classList.add('collapsed');
+      statsSection.classList.add('collapsed');
+      toggleAdditional.textContent = 'Show blocking options';
+    }
+  });
   
   // Toggle blocking on/off
   mainToggle.addEventListener('click', async () => {
@@ -27,26 +57,11 @@ document.addEventListener('DOMContentLoaded', async () => {
     chrome.runtime.openOptionsPage();
   });
   
-  // Quick break mode (disable for 15 minutes)
-  breakBtn.addEventListener('click', async () => {
-    const breakEndTime = Date.now() + (15 * 60 * 1000); // 15 minutes
-    await chrome.storage.sync.set({ 
-      breakMode: true,
-      breakEndTime: breakEndTime 
-    });
-    
-    breakBtn.textContent = 'Break Active';
-    breakBtn.disabled = true;
-    statusEl.textContent = 'Break mode (15 min)';
-    
-    // Re-enable after break
-    setTimeout(async () => {
-      await chrome.storage.sync.set({ 
-        breakMode: false,
-        breakEndTime: null 
-      });
-      await loadData();
-    }, 15 * 60 * 1000);
+  // Listen for sprint completion from background script
+  chrome.runtime.onMessage.addListener((message) => {
+    if (message.action === 'sprintCompleted') {
+      uiController.showCompletionState(message.sprintData);
+    }
   });
   
   async function loadData() {
@@ -55,38 +70,20 @@ document.addEventListener('DOMContentLoaded', async () => {
         'isEnabled', 
         'blockedSites', 
         'bypassAttempts',
-        'breakMode',
-        'breakEndTime'
+        'focusTime'
       ]);
       
       const isEnabled = data.isEnabled !== false; // Default to true
       const blockedSites = data.blockedSites || [];
       const bypassAttempts = data.bypassAttempts || 0;
-      const breakMode = data.breakMode || false;
-      const breakEndTime = data.breakEndTime;
-      
-      // Check if break is still active
-      if (breakMode && breakEndTime && Date.now() < breakEndTime) {
-        const remainingMinutes = Math.ceil((breakEndTime - Date.now()) / (60 * 1000));
-        statusEl.textContent = `Break mode (${remainingMinutes} min left)`;
-        breakBtn.textContent = 'Break Active';
-        breakBtn.disabled = true;
-      } else if (breakMode) {
-        // Break expired, clean up
-        await chrome.storage.sync.set({ 
-          breakMode: false,
-          breakEndTime: null 
-        });
-      }
+      const focusTime = data.focusTime || 0;
       
       // Update UI
-      updateToggleUI(isEnabled && !breakMode);
+      updateToggleUI(isEnabled);
       blockedCountEl.textContent = blockedSites.length;
       bypassAttemptsEl.textContent = bypassAttempts;
-      
-      if (!breakMode) {
-        updateStatus(isEnabled);
-      }
+      focusTimeEl.textContent = `${focusTime} min`;
+      updateStatus(isEnabled);
       
     } catch (error) {
       console.error('Error loading popup data:', error);
