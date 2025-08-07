@@ -14,6 +14,12 @@
   "author": "",
   "license": "ISC",
   "jest": {
+    "transform": {
+      "^.+\\.js$": "babel-jest"
+    },
+    "transformIgnorePatterns": [
+      "/node_modules/"
+    ],
     "testEnvironment": "jsdom"
   },
   "bugs": {
@@ -21,6 +27,9 @@
   },
   "homepage": "https://github.com/andy-carroll/focusguard-chrome-extension#readme",
   "devDependencies": {
+    "@babel/core": "^7.24.5",
+    "@babel/preset-env": "^7.24.5",
+    "babel-jest": "^29.7.0",
     "jest": "^29.7.0",
     "jest-environment-jsdom": "^29.7.0"
   }
